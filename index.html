@@ -6,64 +6,89 @@
 <title>For Kaitlin 🎈</title>
 
 <style>
-    body {
-        margin: 0;
-        overflow: hidden;
-        background: #ffdae9;
-        font-family: "Poppins", sans-serif;
-    }
+body {
+    margin: 0;
+    overflow: hidden;
+    background: #ffdae9;
+    font-family: "Poppins", sans-serif;
+}
 
-    .balloon {
-        position: absolute;
-        width: 60px;
-        height: 80px;
-        background: pink;
-        border-radius: 50%;
-        animation: floatUp linear infinite;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
+/* ❤️ HEART BALLOONS */
+.balloon {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: pink;
+    transform: rotate(45deg);
+    animation: floatUp linear infinite;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
 
-    @keyframes floatUp {
-        from { transform: translateY(100vh); }
-        to { transform: translateY(-120px); }
-    }
+.balloon::before,
+.balloon::after {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: inherit;
+    border-radius: 50%;
+}
 
-    #tapBalloon {
-        position: fixed;
-        left: 50%;
-        top: 55%;
-        transform: translate(-50%, -50%);
-        width: 150px;
-        height: 190px;
-        background: #ff7ebd;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 32px;
-        color: white;
-        cursor: pointer;
-        text-align: center;
-        box-shadow: 0 6px 12px rgba(0,0,0,0.25);
-    }
+.balloon::before {
+    top: -20px;
+    left: 0;
+}
 
-    #message {
-        position: fixed;
-        top: 40%;
-        width: 100%;
-        text-align: center;
-        font-size: 45px;
-        font-weight: bold;
-        color: #ff2d90;
-        display: none;
-    }
+.balloon::after {
+    left: -20px;
+    top: 0;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(100vh) rotate(45deg); }
+    to { transform: translateY(-120px) rotate(45deg); }
+}
+
+#tapBalloon {
+    position: fixed;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 190px;
+    background: #ff7ebd;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+
+#message {
+    position: fixed;
+    top: 40%;
+    width: 100%;
+    text-align: center;
+    font-size: 45px;
+    font-weight: bold;
+    color: #ff2d90;
+    display: none;
+}
 </style>
 </head>
+
 <body>
 
 <div id="tapBalloon">TAP 🎈</div>
-<div id="message">🎉 Happy Birthday 🎂<br>
-Bugge Meri Vink 💖</div>
+
+<div id="message">
+🎉 Happy Birthday 🎂<br>
+Bugge Meri Vink 💖
+</div>
 
 <audio id="popSound">
     <source src="https://www.soundjay.com/buttons/sounds/button-16.mp3" type="audio/mpeg">
@@ -74,23 +99,16 @@ function spawnBalloon() {
     const b = document.createElement("div");
     b.classList.add("balloon");
 
-    // Random color
     b.style.background = "hsl(" + Math.random()*360 + ", 80%, 80%)";
-
-    // Random horizontal position
     b.style.left = Math.random() * 100 + "vw";
 
-    // Random speed
     const speed = 4 + Math.random() * 3;
     b.style.animationDuration = speed + "s";
 
     document.body.appendChild(b);
-
-    // Remove balloon after animation
     setTimeout(() => b.remove(), speed * 1000);
 }
 
-// Spawn balloons continuously
 setInterval(spawnBalloon, 500);
 
 const tap = document.getElementById("tapBalloon");
@@ -103,6 +121,3 @@ tap.onclick = () => {
     msg.style.display = "block";
 };
 </script>
-
-</body>
-</html>
