@@ -13,7 +13,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* ❤️ CLEAR HEART SHAPE */
+/* ❤️ HEART BALLOON */
 .heart {
     position: absolute;
     width: 50px;
@@ -43,6 +43,7 @@ body {
     top: 0;
 }
 
+/* movement */
 @keyframes floatUp {
     from {
         transform: translateY(100vh) rotate(45deg);
@@ -71,7 +72,9 @@ body {
     box-shadow: 0 6px 12px rgba(0,0,0,0.25);
 }
 
+/* message */
 #message {
+    display: none;
     position: fixed;
     top: 40%;
     width: 100%;
@@ -79,14 +82,13 @@ body {
     font-size: 42px;
     font-weight: bold;
     color: #ff2d90;
-    display: none;
 }
 </style>
 </head>
 
 <body>
 
-<div id="tapBalloon">TAP 🎈</div>
+<div id="tapBalloon">TAP ❤️</div>
 
 <div id="message">
 🎉 Happy Birthday 🎂<br>
@@ -94,7 +96,7 @@ Bugge Meri Vink 💖
 </div>
 
 <audio id="popSound">
-    <source src="https://www.soundjay.com/buttons/sounds/button-16.mp3" type="audio/mpeg">
+  <source src="https://www.soundjay.com/buttons/sounds/button-16.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -103,7 +105,7 @@ function spawnHeart() {
     h.className = "heart";
 
     h.style.left = Math.random() * 100 + "vw";
-    h.style.background = "hsl(" + Math.random()*360 + ", 80%, 75%)";
+    h.style.background = "hsl(" + Math.random() * 360 + ", 80%, 75%)";
 
     const speed = 4 + Math.random() * 3;
     h.style.animationDuration = speed + "s";
@@ -112,17 +114,18 @@ function spawnHeart() {
     setTimeout(() => h.remove(), speed * 1000);
 }
 
-setInterval(spawnHeart, 400);
+// ❤️ hearts everywhere
+setInterval(spawnHeart, 300);
 
 const tap = document.getElementById("tapBalloon");
 const msg = document.getElementById("message");
 const pop = document.getElementById("popSound");
 
-tap.onclick = () => {
+tap.addEventListener("click", () => {
     pop.play();
     tap.style.display = "none";
     msg.style.display = "block";
-};
+});
 </script>
 
 </body>
