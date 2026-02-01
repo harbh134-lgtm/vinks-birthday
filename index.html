@@ -1,54 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>For vink🎈</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Kaitlin ❤️</title>
 
 <style>
 body {
     margin: 0;
     overflow: hidden;
     background: #ffdae9;
-    font-family: "Poppins", sans-serif;
+    font-family: Arial, sans-serif;
 }
 
-/* ❤️ HEART BALLOONS */
-.balloon {
+/* ❤️ CLEAR HEART SHAPE */
+.heart {
     position: absolute;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     background: pink;
     transform: rotate(45deg);
     animation: floatUp linear infinite;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.balloon::before,
-.balloon::after {
+.heart::before,
+.heart::after {
     content: "";
     position: absolute;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     background: inherit;
     border-radius: 50%;
 }
 
-.balloon::before {
-    top: -20px;
+.heart::before {
+    top: -25px;
     left: 0;
 }
 
-.balloon::after {
-    left: -20px;
+.heart::after {
+    left: -25px;
     top: 0;
 }
 
 @keyframes floatUp {
-    from { transform: translateY(100vh) rotate(45deg); }
-    to { transform: translateY(-120px) rotate(45deg); }
+    from {
+        transform: translateY(100vh) rotate(45deg);
+    }
+    to {
+        transform: translateY(-120px) rotate(45deg);
+    }
 }
 
+/* tap balloon */
 #tapBalloon {
     position: fixed;
     left: 50%;
@@ -64,7 +68,6 @@ body {
     font-size: 32px;
     color: white;
     cursor: pointer;
-    text-align: center;
     box-shadow: 0 6px 12px rgba(0,0,0,0.25);
 }
 
@@ -73,7 +76,7 @@ body {
     top: 40%;
     width: 100%;
     text-align: center;
-    font-size: 45px;
+    font-size: 42px;
     font-weight: bold;
     color: #ff2d90;
     display: none;
@@ -95,21 +98,21 @@ Bugge Meri Vink 💖
 </audio>
 
 <script>
-function spawnBalloon() {
-    const b = document.createElement("div");
-    b.classList.add("balloon");
+function spawnHeart() {
+    const h = document.createElement("div");
+    h.className = "heart";
 
-    b.style.background = "hsl(" + Math.random()*360 + ", 80%, 80%)";
-    b.style.left = Math.random() * 100 + "vw";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.background = "hsl(" + Math.random()*360 + ", 80%, 75%)";
 
     const speed = 4 + Math.random() * 3;
-    b.style.animationDuration = speed + "s";
+    h.style.animationDuration = speed + "s";
 
-    document.body.appendChild(b);
-    setTimeout(() => b.remove(), speed * 1000);
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), speed * 1000);
 }
 
-setInterval(spawnBalloon, 500);
+setInterval(spawnHeart, 400);
 
 const tap = document.getElementById("tapBalloon");
 const msg = document.getElementById("message");
@@ -121,3 +124,6 @@ tap.onclick = () => {
     msg.style.display = "block";
 };
 </script>
+
+</body>
+</html>
